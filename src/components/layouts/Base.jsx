@@ -1,6 +1,8 @@
 // layout
 import Header from "./Header";
 import Footer from "./Footer";
+// other
+import { Toaster } from 'react-hot-toast';
 
 const Base = (props) => {
   return (
@@ -9,6 +11,7 @@ const Base = (props) => {
       style={{ minHeight: "100vh" }}
     >
       <Header />
+      <Toaster />
       <main role="main">
         {props.children}
       </main>

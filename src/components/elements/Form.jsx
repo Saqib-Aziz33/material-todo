@@ -1,15 +1,21 @@
 import { useState } from "react"
 import { Box, TextField, Typography, Button } from "@mui/material"
+import { v4 as uuidv4 } from 'uuid';
+import toast from 'react-hot-toast'
+
 
 function Form(props) {
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
 
   function addNewTodo(params) {
-    if(!title || !desc) return alert("some fields are empty")
+    if(!title || !desc){
+      toast.error('Fields are empty')
+      return
+    }
     setTitle('')
     setDesc('')
-    props.newTodo({title, desc})
+    props.newTodo({title, desc, id: uuidv4()})
   }
 
   return (

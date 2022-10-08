@@ -2,12 +2,18 @@ import { useState } from "react"
 import { Grid, Container } from "@mui/material"
 import Form from "./Form"
 import Todos from "./Todos"
+import toast from 'react-hot-toast'
 
 function Hero() {
   const [todos, setTodos] = useState([])
 
   function newTodo(todo){
-    setTodos([todo ,...todos])
+    toast.success("New Todo Added")
+    setTodos([todo, ...todos])
+  }
+
+  function delTodo(id){
+    setTodos(todos.filter(todo => todo.id !== id))
   }
 
   return (
@@ -17,7 +23,7 @@ function Hero() {
                 <Form newTodo={newTodo} />
             </Grid>
             <Grid item xs={12} sm={6}>
-                <Todos todos={todos} />
+                <Todos delTodo={delTodo} todos={todos} />
             </Grid>
         </Grid>
     </Container>
